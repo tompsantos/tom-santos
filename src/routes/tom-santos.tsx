@@ -1,22 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import {
   Mail,
   MessageCircle,
@@ -45,8 +36,6 @@ const GITHUB_URL = "https://github.com/tompsantos";
 const LINKEDIN_URL = "https://www.linkedin.com/in/tompsantos";
 const ORBEONE_URL = "https://orbeone.com.br";
 
-
-
 export const Route = createFileRoute("/tom-santos")({
   head: () => ({
     meta: [
@@ -56,11 +45,14 @@ export const Route = createFileRoute("/tom-santos")({
         content:
           "Página institucional de Tom Santos, arquiteto de IA aplicada a governo, educação e negócios.",
       },
-      { property: "og:title", content: "Tom Santos | IA aplicada, governo, educação e tecnologia cidadã" },
+      {
+        property: "og:title",
+        content: "Tom Santos | IA aplicada, educação, governo e tecnologia cidadã",
+      },
       {
         property: "og:description",
         content:
-          "Inteligência artificial aplicada com responsabilidade pública, automação, agentes, gestão pública, negócios e educação.",
+          "Inteligência artificial aplicada com responsabilidade pública, formação, segurança, automação, gestão pública, negócios e educação.",
       },
       { property: "og:image", content: tomPhoto.absoluteUrl },
       { name: "twitter:image", content: tomPhoto.absoluteUrl },
@@ -69,14 +61,13 @@ export const Route = createFileRoute("/tom-santos")({
   component: TomSantosPage,
 });
 
-
 const NAV = [
   { id: "sobre", label: "sobre" },
   { id: "atuacao", label: "atuação" },
   { id: "educacao", label: "educação" },
-  { id: "projetos", label: "projetos" },
+  { id: "projetos", label: "lab" },
   { id: "credenciais", label: "credenciais" },
-  { id: "documentos", label: "documentos" },
+  { id: "documentos", label: "materiais" },
   { id: "contato", label: "contato" },
 ];
 
@@ -104,23 +95,10 @@ function OrbitalRings({ className = "" }: { className?: string }) {
 }
 
 function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "backdrop-blur-xl bg-background/75 border-b border-border/80 shadow-[0_8px_30px_-20px_rgba(0,0,0,0.8)]"
-          : ""
-      }`}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-background/75 backdrop-blur-xl shadow-[0_8px_30px_-24px_rgba(0,0,0,0.9)]">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#top" className="flex items-center gap-2.5 group">
+        <a href="#top" className="group flex items-center gap-2.5">
           <span className="relative flex h-8 w-8 items-center justify-center rounded-full border border-border bg-secondary/60">
             <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_12px_var(--primary)]" />
             <span className="absolute inset-0 rounded-full border border-primary/20" />
@@ -143,7 +121,7 @@ function Header() {
         </nav>
         <a
           href="#contato"
-          className="hidden md:inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.14em] text-foreground/90 hover:text-primary transition-colors"
+          className="hidden items-center gap-1.5 text-xs uppercase tracking-[0.14em] text-foreground/90 transition-colors hover:text-primary md:inline-flex"
         >
           conversar <ArrowRight className="h-3.5 w-3.5" />
         </a>
@@ -174,12 +152,12 @@ function Hero() {
             arquiteto de IA aplicada a governo, educação e negócios
           </p>
           <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
-            inteligência artificial, automação, agentes e tecnologia cidadã para transformar
-            processos, serviços, aprendizagem e decisões em soluções reais, seguras e socialmente
-            úteis.
+            atuo na construção de propostas, sistemas e estratégias para uso responsável da
+            inteligência artificial em contextos públicos, educacionais e organizacionais, com foco
+            em segurança, clareza, formação e impacto real.
           </p>
           <p className="mt-5 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-            santos-sp · orbeOne · tecnologia aplicada com responsabilidade pública
+            santos-sp · fundador da orbeOne Tecnologia · IA aplicada com responsabilidade pública
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button
@@ -193,7 +171,7 @@ function Hero() {
               <a href="#educacao">ver proposta IA na educação</a>
             </Button>
             <Button asChild size="lg" variant="ghost" className="hover:bg-secondary/40">
-              <a href="#projetos">ver projetos</a>
+              <a href="#projetos">ver projetos em desenvolvimento</a>
             </Button>
             <Button asChild size="lg" variant="ghost" className="hover:bg-secondary/40">
               <a href="#contato">entrar em contato</a>
@@ -208,7 +186,6 @@ function Hero() {
               style={{ background: "var(--gradient-primary)" }}
               aria-hidden
             />
-            {/* subtle silver/blue border ring */}
             <div
               className="relative rounded-[1.85rem] p-px shadow-[0_40px_80px_-40px_rgba(0,0,0,0.85)]"
               style={{
@@ -229,7 +206,6 @@ function Hero() {
                   loading="eager"
                 />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
-                {/* discrete corner ticks */}
                 <span aria-hidden className="pointer-events-none absolute left-4 top-4 z-20 h-4 w-4 border-l border-t border-primary/40" />
                 <span aria-hidden className="pointer-events-none absolute right-4 top-4 z-20 h-4 w-4 border-r border-t border-primary/40" />
                 <div className="absolute bottom-5 left-5 right-5 z-30 flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
@@ -242,7 +218,6 @@ function Hero() {
         </div>
       </div>
 
-      {/* Indicator strip */}
       <div className="relative mx-auto mt-16 max-w-7xl px-6">
         <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border/40 md:grid-cols-4">
           {[
@@ -251,10 +226,7 @@ function Hero() {
             { icon: GraduationCap, label: "educação cidadã" },
             { icon: Sparkles, label: "automação e agentes" },
           ].map(({ icon: Icon, label }) => (
-            <div
-              key={label}
-              className="flex items-center gap-3 bg-card px-5 py-5 text-sm"
-            >
+            <div key={label} className="flex items-center gap-3 bg-card px-5 py-5 text-sm">
               <Icon className="h-4 w-4 text-primary" />
               <span className="tracking-wide">{label}</span>
             </div>
@@ -273,12 +245,12 @@ function Positioning() {
         <h2 className="mt-5 font-display text-3xl leading-tight md:text-5xl">
           a inteligência artificial não deve ser tratada apenas como ferramenta de produtividade,
           <span className="text-silver-gradient"> mas como tema de cidadania</span>, gestão,
-          segurança digital, desenvolvimento econômico e transformação social.
+          segurança digital, aprendizagem e tomada de decisão.
         </h2>
         <p className="mx-auto mt-8 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
-          a atuação de Tom conecta tecnologia aplicada, experiência em administração pública,
-          desenvolvimento de soluções digitais e formulação de propostas para governos, empresas,
-          escolas e instituições.
+          meu trabalho conecta tecnologia aplicada, experiência institucional e construção de soluções
+          digitais para ajudar governos, escolas, empresas e organizações a adotarem IA com
+          responsabilidade, método e utilidade prática.
         </p>
       </div>
     </section>
@@ -287,10 +259,18 @@ function Positioning() {
 
 function About() {
   const chips = [
-    "IA aplicada", "automação", "agentes", "GovTech", "educação pública",
-    "tecnologia cidadã", "segurança digital", "gestão pública", "negócios",
+    "IA aplicada",
+    "automação",
+    "agentes",
+    "GovTech",
+    "educação pública",
+    "tecnologia cidadã",
+    "segurança digital",
+    "gestão pública",
+    "negócios",
     "documentação e risco",
   ];
+
   return (
     <section id="sobre" className="relative py-24">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-[1fr_1.4fr]">
@@ -299,9 +279,9 @@ function About() {
           <h2 className="mt-4 font-display text-4xl md:text-5xl">
             arquiteto de IA <br /> com raiz institucional.
           </h2>
-          <p className="mt-6 text-sm text-muted-foreground">
-            perfil técnico-aplicado, com origem na administração pública municipal e foco em uso
-            responsável da IA em contextos governamentais, corporativos e educacionais.
+          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+            perfil técnico-aplicado, com experiência anterior na administração pública municipal e
+            foco em uso responsável da IA em contextos governamentais, corporativos e educacionais.
           </p>
         </div>
 
@@ -309,65 +289,23 @@ function About() {
           <OrbitalRings className="-right-40 -top-20 h-[500px] w-[500px] opacity-30" />
           <div className="relative space-y-5 text-[15px] leading-relaxed text-foreground/90">
             <p>
-              <span className="font-medium">Tom Santos</span> é arquiteto de IA aplicada, com
-              atuação em automação, desenvolvimento de soluções digitais, análise de processos e
-              formulação de estratégias para uso responsável da inteligência artificial em
-              contextos governamentais, corporativos e educacionais.
+              <span className="font-medium">Tom Santos</span> é fundador da orbeOne Tecnologia e
+              atua como arquiteto de IA aplicada, com trabalho voltado à automação, análise de
+              processos, prototipação e formulação de estratégias para uso responsável da inteligência
+              artificial.
             </p>
             <p className="text-muted-foreground">
-              tem experiência anterior na administração pública municipal e desenvolve projetos
-              voltados à aplicação de IA em gestão pública, documentação, risco, atendimento,
-              organização de fluxos, educação, segurança digital e transformação institucional.
+              sua atuação combina vivência em administração pública, construção de soluções digitais e
+              estudo contínuo em inteligência artificial, dados, processos, segurança digital e
+              tecnologia cidadã.
+            </p>
+            <p className="rounded-lg border border-border bg-secondary/40 p-4 text-muted-foreground">
+              a frente educacional não substitui especialistas em educação, currículo ou pedagogia. a
+              contribuição é técnico-aplicada: traduzir IA, automação, dados, riscos e governança para
+              apoiar decisões, formações, pilotos e políticas públicas construídas em diálogo com
+              educadores, gestores e equipes técnicas.
             </p>
           </div>
-
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline" className="mt-8 border-border bg-transparent hover:bg-secondary/60">
-                ver bio completa <ArrowRight className="ml-1 h-4 w-4" />
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-2xl border-border bg-card">
-              <DialogHeader>
-                <DialogTitle className="font-display text-2xl">
-                  Tom Santos
-                </DialogTitle>
-              </DialogHeader>
-              <div className="space-y-4 text-sm leading-relaxed text-foreground/90">
-                <p>
-                  Tom Santos é arquiteto de IA aplicada, com atuação em automação,
-                  desenvolvimento de soluções digitais, análise de processos e formulação de
-                  estratégias para uso responsável da inteligência artificial em contextos
-                  governamentais, corporativos e educacionais.
-                </p>
-
-                <p>
-                  tem experiência anterior na administração pública municipal e desenvolve projetos
-                  voltados à aplicação de IA em gestão pública, documentação, risco, atendimento,
-                  organização de fluxos, educação, segurança digital e transformação
-                  institucional.
-                </p>
-                <p>
-                  atua na construção da <span className="font-medium">orbeOne</span>, iniciativa
-                  dedicada a desenvolver soluções, estudos e aplicações de inteligência artificial,
-                  automação e tecnologia cidadã para governos, empresas, instituições e projetos de
-                  impacto social.
-                </p>
-                <p>
-                  sua frente educacional busca apoiar gestores, professores e comunidades escolares
-                  na compreensão crítica da IA, especialmente em temas como segurança digital,
-                  proteção de dados, deepfakes, uso ético de ferramentas generativas, futuro do
-                  trabalho e formação cidadã.
-                </p>
-                <p className="rounded-lg border border-border bg-secondary/40 p-4 text-muted-foreground">
-                  a atuação educacional de Tom não substitui especialistas em educação, currículo
-                  ou pedagogia. sua contribuição é técnico-aplicada: traduzir IA, automação, dados,
-                  riscos e governança para apoiar decisões, formações, pilotos e políticas públicas
-                  construídas em diálogo com educadores, gestores e equipes técnicas.
-                </p>
-              </div>
-            </DialogContent>
-          </Dialog>
 
           <div className="mt-8 flex flex-wrap gap-2">
             {chips.map((c) => (
@@ -427,13 +365,13 @@ const FRENTES = [
       "como isso pode ajudar: transformar operações repetitivas em fluxos inteligentes e mensuráveis.",
   },
   {
-    key: "risco",
+    key: "seguranca",
     icon: ShieldCheck,
     title: "segurança e risco",
-    desc: "assinaturas digitais, proteção de dados, classificação documental, credibilidade, antifraude, governança, compliance e análise de sinais.",
+    desc: "proteção de dados, classificação documental, credibilidade, antifraude, governança, compliance e análise de sinais.",
     bullets: [
-      "assinaturas ICP-Brasil e validação documental",
       "LGPD, governança e classificação de dados",
+      "assinaturas digitais e validação documental",
       "antifraude, credibilidade e análise de sinais",
     ],
     callout:
@@ -461,63 +399,36 @@ function Frentes() {
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
             <p className="text-[11px] uppercase tracking-[0.28em] text-primary">frentes de atuação</p>
-            <h2 className="mt-4 font-display text-4xl md:text-5xl">
-              cinco frentes, uma arquitetura.
-            </h2>
+            <h2 className="mt-4 font-display text-4xl md:text-5xl">cinco frentes, uma arquitetura.</h2>
           </div>
-          <p className="max-w-md text-sm text-muted-foreground">
-            navegue pelas frentes para entender como IA aplicada, automação e agentes se
-            desdobram em cada contexto — do gabinete à sala de aula, da operação ao risco.
+          <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+            as frentes organizam a atuação pública de Tom sem transformar a página em catálogo de
+            produtos. o ponto de partida é sempre escuta, diagnóstico e construção por fases.
           </p>
         </div>
 
-        <Tabs defaultValue="governo" className="mt-12">
-          <TabsList className="flex h-auto w-full flex-wrap justify-start gap-2 bg-transparent p-0">
-            {FRENTES.map((f) => (
-              <TabsTrigger
-                key={f.key}
-                value={f.key}
-                className="rounded-full border border-border bg-card px-5 py-2.5 text-sm data-[state=active]:border-primary data-[state=active]:bg-primary/15 data-[state=active]:text-foreground data-[state=active]:shadow-[0_0_24px_-6px_var(--primary)]"
-              >
-                <f.icon className="mr-2 h-4 w-4" />
-                {f.title}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-
+        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-5">
           {FRENTES.map((f) => (
-            <TabsContent key={f.key} value={f.key} className="mt-8">
-              <Card className="grid grid-cols-1 gap-8 border-border bg-card p-8 md:grid-cols-[1.3fr_1fr] md:p-10">
-                <div>
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-secondary/60">
-                      <f.icon className="h-5 w-5 text-primary" />
-                    </span>
-                    <h3 className="font-display text-2xl md:text-3xl">{f.title}</h3>
-                  </div>
-                  <p className="mt-5 text-[15px] leading-relaxed text-foreground/85">{f.desc}</p>
-                  <ul className="mt-6 space-y-2.5">
-                    {f.bullets.map((b) => (
-                      <li key={b} className="flex gap-3 text-sm text-muted-foreground">
-                        <span className="mt-2 h-1 w-4 flex-none bg-primary/70" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="relative flex items-center rounded-xl border border-border bg-secondary/30 p-6">
-                  <OrbitalRings className="-right-24 -top-16 h-[300px] w-[300px] opacity-30" />
-                  <div className="relative">
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-primary">
-                      como isso pode ajudar
-                    </p>
-                    <p className="mt-3 text-sm leading-relaxed text-foreground/90">{f.callout}</p>
-                  </div>
-                </div>
-              </Card>
-            </TabsContent>
+            <Card key={f.key} className="border-border bg-card p-6">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-secondary/60">
+                <f.icon className="h-5 w-5 text-primary" />
+              </span>
+              <h3 className="mt-5 font-display text-2xl">{f.title}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{f.desc}</p>
+              <ul className="mt-5 space-y-2.5">
+                {f.bullets.map((b) => (
+                  <li key={b} className="flex gap-3 text-sm text-muted-foreground">
+                    <span className="mt-2 h-1 w-4 flex-none bg-primary/70" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 rounded-lg border border-border bg-secondary/30 p-4 text-xs leading-relaxed text-foreground/90">
+                {f.callout}
+              </p>
+            </Card>
           ))}
-        </Tabs>
+        </div>
       </div>
     </section>
   );
@@ -525,15 +436,26 @@ function Frentes() {
 
 function EducacaoIA() {
   const riscos = [
-    "deepfakes", "fake nudes", "assédio digital", "desinformação",
-    "plágio", "dependência emocional de chatbots", "exposição de dados",
+    "desinformação",
+    "plágio",
+    "deepfakes",
+    "fake nudes",
+    "assédio digital",
+    "exposição de dados",
+    "uso acrítico de respostas prontas",
     "uso irresponsável de imagem e voz",
   ];
   const oportunidades = [
-    "aprendizagem personalizada", "criatividade", "pesquisa orientada",
-    "inclusão digital", "preparação para o futuro do trabalho",
-    "apoio a professores", "projetos escolares reais", "cidadania digital",
+    "formação de professores",
+    "letramento em IA",
+    "pesquisa orientada",
+    "inclusão digital",
+    "produtividade pedagógica",
+    "projetos escolares reais",
+    "preparação para o futuro do trabalho",
+    "cidadania digital",
   ];
+
   return (
     <section id="educacao" className="relative py-24 orbital-bg">
       <div className="mx-auto max-w-7xl px-6">
@@ -543,15 +465,18 @@ function EducacaoIA() {
             IA, educação pública <br />e tecnologia cidadã.
           </h2>
           <p className="mt-6 text-[15px] leading-relaxed text-foreground/85">
-            a inteligência artificial já chegou aos estudantes antes de chegar oficialmente à
-            escola. ela está nos celulares, nas tarefas, nas redes sociais, nos conflitos digitais,
-            nos chatbots, nas imagens geradas e nas expectativas sobre o futuro do trabalho.
+            a inteligência artificial já chegou aos estudantes antes de chegar oficialmente à escola.
+            ela aparece nas pesquisas, nas tarefas, nas redes sociais, nos conflitos digitais, nas
+            imagens geradas, nos chatbots e nas novas expectativas sobre o futuro do trabalho.
           </p>
           <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
             a questão pública não é apenas permitir ou proibir o uso de IA. a questão é formar
-            estudantes, professores e gestores para compreender riscos, limites e oportunidades
-            dessa tecnologia com segurança, pensamento crítico, criatividade e responsabilidade
-            social.
+            estudantes, professores e gestores para compreender riscos, limites e oportunidades dessa
+            tecnologia com segurança, pensamento crítico, criatividade e responsabilidade social.
+          </p>
+          <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
+            não precisamos começar grande. precisamos começar certo: com formação, escuta, proteção de
+            dados, orientação pedagógica e projetos piloto de baixo custo.
           </p>
         </div>
 
@@ -562,10 +487,7 @@ function EducacaoIA() {
             </div>
             <div className="flex flex-wrap gap-2">
               {riscos.map((r) => (
-                <span
-                  key={r}
-                  className="rounded-full border border-border bg-secondary/50 px-3 py-1.5 text-xs text-foreground/85"
-                >
+                <span key={r} className="rounded-full border border-border bg-secondary/50 px-3 py-1.5 text-xs text-foreground/85">
                   {r}
                 </span>
               ))}
@@ -577,10 +499,7 @@ function EducacaoIA() {
             </div>
             <div className="flex flex-wrap gap-2">
               {oportunidades.map((r) => (
-                <span
-                  key={r}
-                  className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1.5 text-xs text-foreground/90"
-                >
+                <span key={r} className="rounded-full border border-primary/25 bg-primary/10 px-3 py-1.5 text-xs text-foreground/90">
                   {r}
                 </span>
               ))}
@@ -590,10 +509,10 @@ function EducacaoIA() {
 
         <div className="mt-10 flex flex-col items-start justify-between gap-6 rounded-2xl border border-border bg-card p-8 md:flex-row md:items-center">
           <p className="font-display text-2xl md:text-3xl">
-            não precisamos começar grande. <span className="text-silver-gradient">precisamos começar certo.</span>
+            professor no centro, estudante protegido, <span className="text-silver-gradient">tecnologia com método.</span>
           </p>
           <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-            <a href="#documentos">ver proposta institucional assinada</a>
+            <a href="#documentos">ver proposta executiva</a>
           </Button>
         </div>
       </div>
@@ -602,14 +521,46 @@ function EducacaoIA() {
 }
 
 const PROJETOS = [
-  { name: "orbeAI", status: "em desenvolvimento", desc: "assistente de IA para conversação, apoio técnico, organização de conhecimento, automação e experiência multimodal." },
-  { name: "orbegov", status: "linha de pesquisa", desc: "uso de IA em políticas públicas, documentos, atendimento, educação, transparência e processos administrativos." },
-  { name: "orbecorp", status: "em desenvolvimento", desc: "IA e automação para empresas, operações, atendimento, produtividade, documentos e inteligência organizacional." },
-  { name: "orberisk", status: "protótipo", desc: "IA para análise de risco documental, credibilidade, sinais de fraude e apoio à decisão." },
-  { name: "orbevault", status: "conceito", desc: "cofre digital inteligente para documentos, certificados, assinaturas, chaves e arquivos sensíveis." },
-  { name: "orberadar", status: "protótipo", desc: "inteligência comercial e estratégica: oportunidades, sinais de mercado, organizações e abordagem." },
-  { name: "orbeauto", status: "em desenvolvimento", desc: "gestão para oficinas, orçamentos, fluxo operacional e organização de processos." },
-  { name: "orbeZen", status: "conceito", desc: "bem-estar, autocuidado, apoio emocional, rotina e tecnologia sensível ao contexto humano." },
+  {
+    name: "orbeAI",
+    status: "em desenvolvimento",
+    desc: "assistente de IA para conversação, apoio técnico, organização de conhecimento, automação e experiência multimodal.",
+  },
+  {
+    name: "orbegov",
+    status: "linha de pesquisa",
+    desc: "estudos sobre uso de IA em políticas públicas, documentos, atendimento, educação, transparência e processos administrativos.",
+  },
+  {
+    name: "orbecorp",
+    status: "em desenvolvimento",
+    desc: "IA e automação para empresas, operações, atendimento, produtividade, documentos e inteligência organizacional.",
+  },
+  {
+    name: "orberisk",
+    status: "protótipo",
+    desc: "IA para análise de risco documental, credibilidade, sinais de fraude e apoio à decisão.",
+  },
+  {
+    name: "orbevault",
+    status: "conceito",
+    desc: "cofre digital inteligente para documentos, certificados, assinaturas, chaves e arquivos sensíveis.",
+  },
+  {
+    name: "orberadar",
+    status: "protótipo",
+    desc: "inteligência comercial e estratégica para oportunidades, sinais de mercado, organizações e abordagem.",
+  },
+  {
+    name: "orbeauto",
+    status: "em desenvolvimento",
+    desc: "gestão para oficinas, orçamentos, fluxo operacional e organização de processos.",
+  },
+  {
+    name: "orbeZen",
+    status: "conceito",
+    desc: "bem-estar, autocuidado, apoio emocional, rotina e tecnologia sensível ao contexto humano.",
+  },
 ];
 
 function statusColor(s: string) {
@@ -625,14 +576,14 @@ function Projetos() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.28em] text-primary">portfólio</p>
+            <p className="text-[11px] uppercase tracking-[0.28em] text-primary">orbeOne lab</p>
             <h2 className="mt-4 font-display text-4xl md:text-5xl">
-              projetos e aplicações <br />em desenvolvimento.
+              estudos, protótipos <br />e aplicações em desenvolvimento.
             </h2>
           </div>
-          <p className="max-w-md text-sm text-muted-foreground">
-            iniciativas em construção no ecossistema orbeOne. status indicativo; escopo e maturidade
-            evoluem por fases.
+          <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+            o lab reúne linhas de estudo, protótipos e aplicações em construção. eles demonstram
+            pesquisa, método e capacidade técnica, não um catálogo de venda imediata.
           </p>
         </div>
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -645,9 +596,7 @@ function Projetos() {
                 <span className="font-mono text-[11px] tracking-widest text-muted-foreground/60">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span
-                  className={`rounded-full border px-2 py-0.5 text-[10px] uppercase tracking-wider ${statusColor(p.status)}`}
-                >
+                <span className={`rounded-full border px-2 py-0.5 text-[10px] uppercase tracking-wider ${statusColor(p.status)}`}>
                   {p.status}
                 </span>
               </div>
@@ -665,10 +614,10 @@ function Projetos() {
 type IssuerMark = {
   key: string;
   issuer: string;
-  logo: string; // path to real brand SVG in /public/logos
-  logoClass: string; // height/sizing for the logo image
-  logoLabel?: string; // neutral name shown next to icon-only marks
-  accent: string; // hex/rgb for subtle border glow
+  logo: string;
+  logoClass: string;
+  logoLabel?: string;
+  accent: string;
   items: string[];
   verify: string;
 };
@@ -681,10 +630,7 @@ const CREDENCIAIS: IssuerMark[] = [
     logo: "/logos/logo-google-cloud.svg",
     logoClass: "h-7 w-auto",
     logoLabel: "Google Cloud",
-    items: [
-      "Introduction to Generative AI",
-      "Machine Learning Operations (MLOps) to Generative AI",
-    ],
+    items: ["Introduction to Generative AI", "Machine Learning Operations (MLOps) to Generative AI"],
     verify: "credencial via LinkedIn",
   },
   {
@@ -693,10 +639,7 @@ const CREDENCIAIS: IssuerMark[] = [
     accent: "31,112,193",
     logo: "/logos/logo-ibm.svg",
     logoClass: "h-8 w-auto",
-    items: [
-      "Supercharge Your Data Analytics with Generative AI",
-      "Introduction to Software Engineering",
-    ],
+    items: ["Supercharge Your Data Analytics with Generative AI", "Introduction to Software Engineering"],
     verify: "credencial via LinkedIn",
   },
   {
@@ -715,10 +658,7 @@ const CREDENCIAIS: IssuerMark[] = [
     accent: "245,166,35",
     logo: "/logos/logo-voitto.svg",
     logoClass: "h-7 w-auto",
-    items: [
-      "Yellow Belt em Lean Seis Sigma",
-      "White Belt em Lean Seis Sigma",
-    ],
+    items: ["Yellow Belt em Lean Seis Sigma", "White Belt em Lean Seis Sigma"],
     verify: "formação verificada",
   },
 ];
@@ -728,21 +668,15 @@ function CredentialCard({ c }: { c: IssuerMark }) {
     <div
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 md:p-6"
       style={{
-        backgroundImage:
-          "linear-gradient(180deg, oklch(1 0 0 / 0.03), oklch(1 0 0 / 0.005))",
-        boxShadow:
-          `inset 0 1px 0 oklch(1 0 0 / 0.06), 0 20px 50px -30px rgba(${c.accent},0.25)`,
+        backgroundImage: "linear-gradient(180deg, oklch(1 0 0 / 0.03), oklch(1 0 0 / 0.005))",
+        boxShadow: `inset 0 1px 0 oklch(1 0 0 / 0.06), 0 20px 50px -30px rgba(${c.accent},0.25)`,
       }}
     >
-      {/* accent hairline */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-70"
-        style={{
-          background: `linear-gradient(90deg, transparent, rgba(${c.accent},0.55), transparent)`,
-        }}
+        style={{ background: `linear-gradient(90deg, transparent, rgba(${c.accent},0.55), transparent)` }}
       />
-      {/* issuer header */}
       <div className="flex items-center justify-between gap-3">
         <div className="flex h-[3.5rem] min-w-[9.5rem] items-center gap-3 rounded-xl border border-black/5 bg-[#F7F8FA] px-4 shadow-[0_1px_0_rgba(255,255,255,0.7)_inset,0_12px_28px_-16px_rgba(0,0,0,0.55)]">
           <img
@@ -753,9 +687,7 @@ function CredentialCard({ c }: { c: IssuerMark }) {
             decoding="async"
           />
           {c.logoLabel ? (
-            <span className="font-sans text-[15px] font-semibold tracking-tight text-[#1B2A4E]">
-              {c.logoLabel}
-            </span>
+            <span className="font-sans text-[15px] font-semibold tracking-tight text-[#1B2A4E]">{c.logoLabel}</span>
           ) : null}
         </div>
         <span className="rounded-full border border-border/70 px-2.5 py-1 text-[9px] uppercase tracking-[0.2em] text-muted-foreground/70">
@@ -765,9 +697,7 @@ function CredentialCard({ c }: { c: IssuerMark }) {
 
       <div className="mt-5 flex items-center gap-3">
         <div className="h-px flex-1 bg-border" />
-        <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
-          credenciais
-        </span>
+        <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">credenciais</span>
         <div className="h-px flex-1 bg-border" />
       </div>
 
@@ -777,19 +707,14 @@ function CredentialCard({ c }: { c: IssuerMark }) {
             key={it}
             className="flex items-start gap-2.5 rounded-lg border border-border/70 bg-secondary/30 px-3 py-2.5 text-[13px] leading-snug text-foreground/90"
           >
-            <ShieldCheck
-              className="mt-0.5 h-3.5 w-3.5 shrink-0"
-              style={{ color: `rgb(${c.accent})` }}
-            />
+            <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0" style={{ color: `rgb(${c.accent})` }} />
             <span>{it}</span>
           </li>
         ))}
       </ul>
 
       <div className="mt-5 flex items-center justify-between border-t border-border/60 pt-3">
-        <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-          {c.verify}
-        </span>
+        <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{c.verify}</span>
         <span
           className="inline-flex h-5 items-center rounded-full px-2 text-[9px] font-medium uppercase tracking-[0.18em]"
           style={{
@@ -812,14 +737,12 @@ function Credenciais() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.6fr]">
           <div>
             <p className="text-[11px] uppercase tracking-[0.28em] text-primary">credenciais</p>
-            <h2 className="mt-4 font-display text-4xl md:text-5xl">
-              formação permanente, prática aplicada.
-            </h2>
+            <h2 className="mt-4 font-display text-4xl md:text-5xl">formação permanente, prática aplicada.</h2>
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              a atuação de Tom combina prática aplicada, estudo contínuo, construção de protótipos
-              e desenvolvimento de propostas institucionais. suas credenciais reforçam uma
-              trajetória em formação permanente nas áreas de inteligência artificial, dados,
-              automação, processos, gestão e tecnologia aplicada.
+              a atuação de Tom combina prática aplicada, estudo contínuo, construção de protótipos e
+              desenvolvimento de propostas institucionais. suas credenciais reforçam uma trajetória em
+              formação permanente nas áreas de inteligência artificial, dados, automação, processos,
+              gestão e tecnologia aplicada.
             </p>
             <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-muted-foreground/70">
               credenciais verificáveis via LinkedIn
@@ -836,18 +759,17 @@ function Credenciais() {
   );
 }
 
-
 const DOCS = [
   {
     id: "d1",
-    title: "proposta programática sobre IA na educação básica",
-    desc: "documento assinado digitalmente com certificado ICP-Brasil e validado pelo ITI/Gov.br.",
-    cta: { label: "solicitar proposta", icon: MessageCircle, href: "#contato" },
+    title: "proposta executiva: IA nas escolas de Santos",
+    desc: "material introdutório para abrir diálogo sobre adoção responsável de inteligência artificial na educação, com foco em formação, segurança, LGPD, letramento em IA e piloto de baixo custo.",
+    cta: { label: "solicitar conversa", icon: MessageCircle, href: "#contato" },
   },
   {
     id: "d2",
     title: "palestra: a inteligência artificial já chegou à escola. e agora?",
-    desc: "riscos, oportunidades e caminhos para o uso consciente, seguro e criativo da IA.",
+    desc: "riscos, oportunidades e caminhos para o uso consciente, seguro e criativo da IA em ambientes educacionais.",
     cta: { label: "solicitar conversa", icon: MessageCircle, href: "#contato" },
   },
   {
@@ -874,10 +796,13 @@ function Documentos() {
   return (
     <section id="documentos" className="relative border-t border-border bg-surface py-24">
       <div className="mx-auto max-w-5xl px-6">
-        <p className="text-[11px] uppercase tracking-[0.28em] text-primary">
-          documentos, palestras e conversas técnicas
+        <p className="text-[11px] uppercase tracking-[0.28em] text-primary">materiais institucionais</p>
+        <h2 className="mt-4 font-display text-4xl md:text-5xl">documentos para abrir diálogo.</h2>
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          os materiais têm caráter introdutório e exploratório, voltados à abertura de diálogo técnico
+          com educadores, gestores e instituições. o primeiro contato não parte de uma venda, mas de
+          escuta, diagnóstico e contribuição responsável.
         </p>
-        <h2 className="mt-4 font-display text-4xl md:text-5xl">material institucional.</h2>
 
         <Accordion type="single" collapsible className="mt-10 space-y-3.5">
           {DOCS.map((d) => (
@@ -910,11 +835,6 @@ function Documentos() {
             </AccordionItem>
           ))}
         </Accordion>
-
-        <p className="mt-8 text-sm italic text-muted-foreground">
-          o primeiro contato pode ser exploratório, sem finalidade comercial imediata, para escuta,
-          orientação inicial e identificação de possibilidades reais.
-        </p>
       </div>
     </section>
   );
@@ -935,11 +855,11 @@ function Contato() {
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         <p className="text-[11px] uppercase tracking-[0.28em] text-primary">contato</p>
         <h2 className="mt-4 font-display text-5xl leading-tight md:text-6xl">
-          <span className="text-silver-gradient">vamos conversar?</span>
+          <span className="text-silver-gradient">vamos conversar sobre IA responsável?</span>
         </h2>
         <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          para reuniões institucionais, palestras, oficinas, projetos, parcerias, imprensa,
-          convites ou conversas técnicas sobre IA aplicada.
+          para conversas institucionais, reuniões exploratórias, palestras, oficinas ou diálogos
+          técnicos sobre inteligência artificial aplicada à educação, governo e organizações.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           {links.map((l) => (
@@ -968,26 +888,19 @@ function Footer() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 md:grid-cols-[1.4fr_1fr]">
         <div>
           <p className="font-display text-2xl">Tom Santos</p>
-          <p className="mt-2 text-sm text-muted-foreground">
-            arquiteto de IA aplicada a governo, educação e negócios
-          </p>
-          <p className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            orbeOne · santos-sp
-          </p>
+          <p className="mt-2 text-sm text-muted-foreground">arquiteto de IA aplicada a governo, educação e negócios</p>
+          <p className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">orbeOne · santos-sp</p>
         </div>
         <div className="flex flex-wrap items-start gap-x-6 gap-y-2 text-sm md:justify-end">
           <a href={ORBEONE_URL} className="text-muted-foreground hover:text-foreground">orbeOne</a>
-          <a href="#educacao" className="text-muted-foreground hover:text-foreground">proposta IA na educação</a>
+          <a href="#educacao" className="text-muted-foreground hover:text-foreground">IA na educação</a>
           <a href={LINKEDIN_URL} className="text-muted-foreground hover:text-foreground">LinkedIn</a>
           <a href={GITHUB_URL} className="text-muted-foreground hover:text-foreground">GitHub</a>
           <a href="#contato" className="text-muted-foreground hover:text-foreground">contato</a>
         </div>
       </div>
       <div className="mx-auto mt-10 max-w-7xl border-t border-border px-6 pt-6">
-        <p className="text-xs text-muted-foreground">
-          © 2026 Tom Santos. todos os direitos reservados.
-        </p>
-
+        <p className="text-xs text-muted-foreground">© 2026 Tom Santos. todos os direitos reservados.</p>
       </div>
     </footer>
   );
