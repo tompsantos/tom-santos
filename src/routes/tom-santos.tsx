@@ -35,10 +35,6 @@ import {
   Download,
   Landmark,
 } from "lucide-react";
-import logoGoogleCloud from "@/assets/credentials/logo-google-cloud.svg";
-import logoIBM from "@/assets/credentials/logo-ibm.svg";
-import logoDatabricks from "@/assets/credentials/logo-databricks.svg";
-import logoVoitto from "@/assets/credentials/logo-voitto.svg";
 
 const CONTACT_EMAIL = "contato@orbeone.com.br";
 const WHATSAPP_URL = "https://wa.me/5513960004079";
