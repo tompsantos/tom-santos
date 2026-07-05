@@ -675,13 +675,16 @@ const CREDENCIAIS: IssuerMark[] = [
     issuer: "IBM",
     accent: "15,98,254",
     wordmark: (
-      <span
-        className="font-sans text-[22px] font-bold italic tracking-tight leading-none"
-        style={{ color: "#0F62FE", letterSpacing: "-0.02em" }}
-      >
-        IBM
+      <span className="inline-flex items-center leading-none">
+        <span
+          className="inline-flex items-center rounded-[3px] px-2 py-1 font-sans text-[18px] font-extrabold tracking-tight text-white"
+          style={{ backgroundColor: "#0F62FE", letterSpacing: "0.02em" }}
+        >
+          IBM
+        </span>
       </span>
     ),
+
     items: [
       "Supercharge Your Data Analytics with Generative AI",
       "Introduction to Software Engineering",
