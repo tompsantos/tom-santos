@@ -512,7 +512,7 @@ function EducacaoIA() {
             professor no centro, estudante protegido, <span className="text-silver-gradient">tecnologia com método.</span>
           </p>
           <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-            <a href="#documentos">ver proposta executiva</a>
+            <a href="/docs/ia-escolas-santos_proposta-executiva_v0.1.pdf" target="_blank" rel="noreferrer">ver proposta executiva</a>
           </Button>
         </div>
       </div>
@@ -764,7 +764,7 @@ const DOCS = [
     id: "d1",
     title: "proposta executiva: IA nas escolas de Santos",
     desc: "material introdutório para abrir diálogo sobre adoção responsável de inteligência artificial na educação, com foco em formação, segurança, LGPD, letramento em IA e piloto de baixo custo.",
-    cta: { label: "solicitar conversa", icon: MessageCircle, href: "#contato" },
+    cta: { label: "abrir proposta executiva", icon: FileSignature, href: "/docs/ia-escolas-santos_proposta-executiva_v0.1.pdf" },
   },
   {
     id: "d2",
