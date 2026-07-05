@@ -868,7 +868,7 @@ function Footer() {
     <footer className="border-t border-border bg-surface py-14">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 md:grid-cols-[1.4fr_1fr]">
         <div>
-          <p className="font-display text-2xl">Tom Laercio Pereira dos Santos</p>
+          <p className="font-display text-2xl">Tom Santos</p>
           <p className="mt-2 text-sm text-muted-foreground">
             arquiteto de IA aplicada a governo, educação e negócios
           </p>
@@ -877,17 +877,18 @@ function Footer() {
           </p>
         </div>
         <div className="flex flex-wrap items-start gap-x-6 gap-y-2 text-sm md:justify-end">
-          <a href="https://orbeone.com.br" className="text-muted-foreground hover:text-foreground">orbeOne</a>
+          <a href={ORBEONE_URL} className="text-muted-foreground hover:text-foreground">orbeOne</a>
           <a href="#educacao" className="text-muted-foreground hover:text-foreground">proposta IA na educação</a>
-          <a href="https://linkedin.com/" className="text-muted-foreground hover:text-foreground">LinkedIn</a>
-          <a href="https://github.com/" className="text-muted-foreground hover:text-foreground">GitHub</a>
+          <a href={LINKEDIN_URL} className="text-muted-foreground hover:text-foreground">LinkedIn</a>
+          <a href={GITHUB_URL} className="text-muted-foreground hover:text-foreground">GitHub</a>
           <a href="#contato" className="text-muted-foreground hover:text-foreground">contato</a>
         </div>
       </div>
       <div className="mx-auto mt-10 max-w-7xl border-t border-border px-6 pt-6">
         <p className="text-xs text-muted-foreground">
-          © 2026 Tom Laercio Pereira dos Santos. todos os direitos reservados.
+          © 2026 Tom Santos. todos os direitos reservados.
         </p>
+
       </div>
     </footer>
   );
