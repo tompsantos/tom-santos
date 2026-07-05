@@ -181,41 +181,55 @@ function Hero() {
               <a href="#atuacao">conhecer atuação</a>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-border bg-transparent hover:bg-secondary/60">
-              <a href="#educacao">proposta IA na educação</a>
+              <a href="#educacao">ver proposta IA na educação</a>
             </Button>
             <Button asChild size="lg" variant="ghost" className="hover:bg-secondary/40">
               <a href="#projetos">ver projetos</a>
             </Button>
             <Button asChild size="lg" variant="ghost" className="hover:bg-secondary/40">
-              <a href="#contato">contato</a>
+              <a href="#contato">entrar em contato</a>
             </Button>
           </div>
         </div>
 
         <div className="relative animate-fade-up [animation-delay:150ms]">
           <div className="relative mx-auto max-w-md">
+            <OrbitalRings className="-inset-10 h-[calc(100%+5rem)] w-[calc(100%+5rem)] opacity-40 animate-orbit-slow" />
             <div
-              className="absolute -inset-3 rounded-[2rem] opacity-70 blur-2xl"
+              className="absolute -inset-4 rounded-[2.25rem] opacity-60 blur-2xl"
               style={{ background: "var(--gradient-primary)" }}
               aria-hidden
             />
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-border glass-card">
-              <div
-                className="absolute inset-0 opacity-30"
-                style={{ background: "var(--gradient-hero)" }}
-                aria-hidden
-              />
-              <img
-                src={tomPhoto.url}
-                alt="Retrato institucional de Tom Santos"
-                className="relative z-10 h-[560px] w-full object-cover"
-                loading="eager"
-              />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
-              <div className="absolute bottom-5 left-5 right-5 z-30 flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                <span>Tom Santos</span>
-
-                <span className="text-primary">orbeOne</span>
+            {/* premium double frame */}
+            <div className="relative rounded-[2rem] p-[1.5px]" style={{ background: "var(--gradient-border)" }}>
+              <div className="relative overflow-hidden rounded-[1.9rem] border border-border/60 glass-card">
+                <div
+                  className="absolute inset-0 opacity-30"
+                  style={{ background: "var(--gradient-hero)" }}
+                  aria-hidden
+                />
+                <img
+                  src={tomPhoto.url}
+                  alt="Retrato institucional de Tom Santos"
+                  className="relative z-10 h-[560px] w-full object-cover"
+                  loading="eager"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-44 bg-gradient-to-t from-background via-background/50 to-transparent" />
+                {/* corner ticks */}
+                <span aria-hidden className="absolute left-4 top-4 z-30 h-5 w-5 border-l border-t border-primary/50" />
+                <span aria-hidden className="absolute right-4 top-4 z-30 h-5 w-5 border-r border-t border-primary/50" />
+                <div className="absolute bottom-5 left-5 right-5 z-30 flex items-end justify-between">
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-sm font-medium tracking-wide text-foreground">Tom Santos</span>
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                      arquiteto de IA aplicada
+                    </span>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-primary">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_10px_var(--primary)]" />
+                    orbeOne
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -616,21 +630,29 @@ function Projetos() {
           </p>
         </div>
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {PROJETOS.map((p) => (
+          {PROJETOS.map((p, i) => (
             <Card
               key={p.name}
-              className="group relative overflow-hidden border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40"
+              className="group relative overflow-hidden border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_24px_60px_-30px_var(--primary)]"
             >
-              <div className="flex items-center justify-between">
-                <h3 className="font-display text-xl">{p.name}</h3>
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100"
+                style={{ background: "var(--gradient-primary)" }}
+              />
+              <div className="relative flex items-start justify-between">
+                <span className="font-mono text-[11px] tracking-widest text-muted-foreground/60">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <span
                   className={`rounded-full border px-2 py-0.5 text-[10px] uppercase tracking-wider ${statusColor(p.status)}`}
                 >
                   {p.status}
                 </span>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
-              <div className="mt-6 h-px w-full bg-gradient-to-r from-primary/40 to-transparent" />
+              <h3 className="relative mt-4 font-display text-xl">{p.name}</h3>
+              <p className="relative mt-3 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+              <div className="relative mt-6 h-px w-full bg-gradient-to-r from-primary/40 to-transparent transition-all duration-300 group-hover:from-primary/70" />
             </Card>
           ))}
         </div>
@@ -675,12 +697,15 @@ const CREDENCIAIS: IssuerMark[] = [
     issuer: "IBM",
     accent: "15,98,254",
     wordmark: (
-      <span className="inline-flex items-center leading-none">
+      <span className="flex flex-col leading-none">
         <span
-          className="inline-flex items-center rounded-[3px] px-2 py-1 font-sans text-[18px] font-extrabold tracking-tight text-white"
-          style={{ backgroundColor: "#0F62FE", letterSpacing: "0.02em" }}
+          className="font-sans text-[21px] font-bold tracking-[0.01em]"
+          style={{ color: "#0F62FE" }}
         >
           IBM
+        </span>
+        <span className="mt-1 text-[8.5px] font-semibold uppercase tracking-[0.12em] text-[#5A6784]">
+          SkillsBuild / AI Credentials
         </span>
       </span>
     ),
@@ -761,10 +786,10 @@ function CredentialCard({ c }: { c: IssuerMark }) {
       />
       {/* issuer header */}
       <div className="flex items-center justify-between gap-3">
-        <div className="flex h-11 items-center rounded-lg bg-white/95 px-3 shadow-[0_1px_0_rgba(255,255,255,0.5)_inset,0_6px_16px_-8px_rgba(0,0,0,0.4)]">
+        <div className="flex min-h-[3.25rem] items-center rounded-xl bg-white px-3.5 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_10px_24px_-12px_rgba(0,0,0,0.5)]">
           {c.wordmark}
         </div>
-        <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground/80">
+        <span className="rounded-full border border-border/70 px-2.5 py-1 text-[9px] uppercase tracking-[0.2em] text-muted-foreground/70">
           emissor
         </span>
       </div>
