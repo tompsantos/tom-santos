@@ -553,7 +553,7 @@ function EducacaoIA() {
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-          <Card className="relative overflow-hidden border-border bg-card p-8">
+          <Card className="relative overflow-hidden border-border bg-card p-8 transition-all duration-300 hover:border-destructive/30 hover:shadow-[inset_0_1px_0_oklch(1_0_0/0.05),0_24px_50px_-34px_rgba(200,60,60,0.4)]">
             <div className="mb-5 flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-destructive/90">
               <ShieldCheck className="h-4 w-4" /> riscos que já existem
             </div>
@@ -568,7 +568,7 @@ function EducacaoIA() {
               ))}
             </div>
           </Card>
-          <Card className="relative overflow-hidden border-border bg-card p-8">
+          <Card className="relative overflow-hidden border-border bg-card p-8 transition-all duration-300 hover:border-primary/30 hover:shadow-[inset_0_1px_0_oklch(1_0_0/0.05),0_24px_50px_-34px_rgba(30,80,200,0.5)]">
             <div className="mb-5 flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-primary">
               <Sparkles className="h-4 w-4" /> oportunidades reais
             </div>
@@ -723,7 +723,7 @@ const CREDENCIAIS: IssuerMark[] = [
 function CredentialCard({ c }: { c: IssuerMark }) {
   return (
     <div
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card/60 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 md:p-6"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 md:p-6"
       style={{
         backgroundImage:
           "linear-gradient(180deg, oklch(1 0 0 / 0.03), oklch(1 0 0 / 0.005))",
@@ -876,24 +876,28 @@ function Documentos() {
         </p>
         <h2 className="mt-4 font-display text-4xl md:text-5xl">material institucional.</h2>
 
-        <Accordion type="single" collapsible className="mt-10 space-y-3">
+        <Accordion type="single" collapsible className="mt-10 space-y-3.5">
           {DOCS.map((d) => (
             <AccordionItem
               key={d.id}
               value={d.id}
-              className="overflow-hidden rounded-xl border border-border bg-card px-5 data-[state=open]:border-primary/40"
+              className="group overflow-hidden rounded-xl border border-border bg-card px-5 transition-all duration-300 hover:border-primary/30 data-[state=open]:border-primary/45 data-[state=open]:bg-card data-[state=open]:shadow-[inset_0_1px_0_oklch(1_0_0/0.06),0_24px_50px_-32px_rgba(30,80,200,0.5)]"
             >
-              <AccordionTrigger className="py-5 text-left hover:no-underline">
+              <AccordionTrigger className="py-5 text-left text-base font-semibold leading-snug hover:no-underline md:text-lg [&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-primary/70">
                 <span className="flex items-center gap-4">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-secondary/60">
-                    <FileSignature className="h-4 w-4 text-primary" />
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-secondary/60 transition-colors duration-300 group-hover:border-primary/40 group-data-[state=open]:border-primary/50 group-data-[state=open]:bg-primary/10">
+                    <FileSignature className="h-5 w-5 text-primary" />
                   </span>
-                  <span className="font-medium">{d.title}</span>
+                  <span className="text-pretty text-foreground">{d.title}</span>
                 </span>
               </AccordionTrigger>
-              <AccordionContent className="pb-6 pl-[52px] text-sm text-muted-foreground">
-                <p>{d.desc}</p>
-                <Button asChild variant="outline" className="mt-4 border-border bg-transparent hover:bg-secondary/60">
+              <AccordionContent className="pb-6 pl-[60px] text-[15px] leading-relaxed text-muted-foreground">
+                <p className="text-pretty">{d.desc}</p>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="mt-5 border-border bg-transparent text-sm font-medium transition-all hover:border-primary/40 hover:bg-secondary/60"
+                >
                   <a href={d.cta.href}>
                     <d.cta.icon className="mr-2 h-4 w-4" />
                     {d.cta.label}
@@ -941,7 +945,7 @@ function Contato() {
               asChild
               variant="outline"
               size="lg"
-              className="border-border bg-card/50 backdrop-blur hover:border-primary/40 hover:bg-primary/10"
+              className="border-border bg-card/50 backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/10 hover:shadow-[0_16px_36px_-22px_var(--primary)]"
             >
               <a href={l.href} target={l.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
                 <l.icon className="mr-2 h-4 w-4" />
