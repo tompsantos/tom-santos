@@ -643,25 +643,6 @@ function Projetos() {
   );
 }
 
-const BADGES = [
-  { title: "Google", subtitle: "inteligência artificial e analytics" },
-  { title: "IBM", subtitle: "inteligência artificial" },
-  { title: "Databricks", subtitle: "engenharia de dados" },
-  { title: "Lean Six Sigma", subtitle: "white belt · yellow belt" },
-  { title: "IA & automação", subtitle: "formações e badges técnicos" },
-  { title: "dados & processos", subtitle: "transformação digital" },
-];
-
-function Credenciais() {
-  return (
-    <section id="credenciais" className="relative py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.6fr]">
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.28em] text-primary">credenciais</p>
-            <h2 className="mt-4 font-display text-4xl md:text-5xl">
-              formação permanente, prática aplicada.
-            </h2>
 const CREDENCIAIS = [
   {
     issuer: "Google Cloud",
