@@ -162,7 +162,7 @@ function Hero() {
       <OrbitalRings className="-left-40 top-10 h-[700px] w-[700px] opacity-60 animate-orbit-slow" />
       <OrbitalRings className="-right-52 bottom-0 h-[600px] w-[600px] opacity-40" />
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-[1.15fr_1fr]">
-        <div className="animate-fade-up">
+        <div className="animate-fade-up -mt-20 md:-mt-24 xl:-mt-28">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/40 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
             orbeOne · arquitetura de IA aplicada
@@ -201,7 +201,7 @@ function Hero() {
           </div>
         </div>
 
-        <div className="relative animate-fade-up [animation-delay:150ms]">
+        <div className="relative animate-fade-up -mt-4 md:-mt-6 xl:-mt-8 [animation-delay:150ms]">
           <div className="relative mx-auto max-w-md">
             <div
               className="absolute -inset-4 rounded-[2.25rem] opacity-55 blur-3xl"
