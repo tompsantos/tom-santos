@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState } from "react";
 const tomPhoto = { url: "/tom-santos.png" };
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -111,7 +111,9 @@ function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "backdrop-blur-xl bg-background/70 border-b border-border" : ""
+        scrolled
+          ? "backdrop-blur-xl bg-background/75 border-b border-border/80 shadow-[0_8px_30px_-20px_rgba(0,0,0,0.8)]"
+          : ""
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -177,7 +179,11 @@ function Hero() {
             santos-sp · orbeOne · tecnologia aplicada com responsabilidade pública
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button
+              asChild
+              size="lg"
+              className="bg-primary text-primary-foreground shadow-[0_10px_30px_-12px_var(--primary)] transition-all hover:bg-primary/90 hover:shadow-[0_16px_40px_-14px_var(--primary)]"
+            >
               <a href="#atuacao">conhecer atuação</a>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-border bg-transparent hover:bg-secondary/60">
@@ -195,26 +201,38 @@ function Hero() {
         <div className="relative animate-fade-up [animation-delay:150ms]">
           <div className="relative mx-auto max-w-md">
             <div
-              className="absolute -inset-3 rounded-[2rem] opacity-60 blur-2xl"
+              className="absolute -inset-4 rounded-[2.25rem] opacity-55 blur-3xl"
               style={{ background: "var(--gradient-primary)" }}
               aria-hidden
             />
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-border glass-card">
-              <div
-                className="absolute inset-0 opacity-30"
-                style={{ background: "var(--gradient-hero)" }}
-                aria-hidden
-              />
-              <img
-                src={tomPhoto.url}
-                alt="Retrato institucional de Tom Santos"
-                className="relative z-10 h-[560px] w-full object-cover object-top"
-                loading="eager"
-              />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
-              <div className="absolute bottom-5 left-5 right-5 z-30 flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                <span>Tom Santos</span>
-                <span className="text-primary">orbeOne</span>
+            {/* subtle silver/blue border ring */}
+            <div
+              className="relative rounded-[1.85rem] p-px shadow-[0_40px_80px_-40px_rgba(0,0,0,0.85)]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(140deg, rgba(120,160,255,0.35), rgba(255,255,255,0.06) 40%, rgba(120,160,255,0.18))",
+              }}
+            >
+              <div className="relative overflow-hidden rounded-[1.75rem] glass-card">
+                <div
+                  className="absolute inset-0 opacity-30"
+                  style={{ background: "var(--gradient-hero)" }}
+                  aria-hidden
+                />
+                <img
+                  src={tomPhoto.url}
+                  alt="Retrato institucional de Tom Santos"
+                  className="relative z-10 h-[560px] w-full object-cover object-top"
+                  loading="eager"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
+                {/* discrete corner ticks */}
+                <span aria-hidden className="pointer-events-none absolute left-4 top-4 z-20 h-4 w-4 border-l border-t border-primary/40" />
+                <span aria-hidden className="pointer-events-none absolute right-4 top-4 z-20 h-4 w-4 border-r border-t border-primary/40" />
+                <div className="absolute bottom-5 left-5 right-5 z-30 flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                  <span>Tom Santos</span>
+                  <span className="text-primary">orbeOne</span>
+                </div>
               </div>
             </div>
           </div>
@@ -618,7 +636,7 @@ function Projetos() {
           {PROJETOS.map((p, i) => (
             <Card
               key={p.name}
-              className="group relative border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40"
+              className="group relative border-border bg-card p-6 shadow-[inset_0_1px_0_oklch(1_0_0/0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[inset_0_1px_0_oklch(1_0_0/0.08),0_28px_60px_-34px_rgba(30,80,200,0.55)]"
             >
               <div className="flex items-start justify-between">
                 <span className="font-mono text-[11px] tracking-widest text-muted-foreground/60">
@@ -644,7 +662,9 @@ function Projetos() {
 type IssuerMark = {
   key: string;
   issuer: string;
-  wordmark: ReactNode;
+  logo: string; // path to real brand SVG in /public/logos
+  logoClass: string; // height/sizing for the logo image
+  logoLabel?: string; // neutral name shown next to icon-only marks
   accent: string; // hex/rgb for subtle border glow
   items: string[];
   verify: string;
@@ -655,22 +675,9 @@ const CREDENCIAIS: IssuerMark[] = [
     key: "gcp",
     issuer: "Google Cloud",
     accent: "66,133,244",
-    wordmark: (
-      <span className="flex flex-col leading-none">
-        <span className="font-sans text-[20px] font-semibold tracking-tight">
-          <span style={{ color: "#4285F4" }}>G</span>
-          <span style={{ color: "#EA4335" }}>o</span>
-          <span style={{ color: "#FBBC04" }}>o</span>
-          <span style={{ color: "#4285F4" }}>g</span>
-          <span style={{ color: "#34A853" }}>l</span>
-          <span style={{ color: "#EA4335" }}>e</span>
-          <span className="ml-1.5 font-normal text-[#3C4043]">Cloud</span>
-        </span>
-        <span className="mt-1.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#5A6784]">
-          Generative AI / MLOps
-        </span>
-      </span>
-    ),
+    logo: "/logos/logo-google-cloud.svg",
+    logoClass: "h-7 w-auto",
+    logoLabel: "Google Cloud",
     items: [
       "Introduction to Generative AI",
       "Machine Learning Operations (MLOps) to Generative AI",
@@ -680,21 +687,9 @@ const CREDENCIAIS: IssuerMark[] = [
   {
     key: "ibm",
     issuer: "IBM",
-    accent: "15,98,254",
-    wordmark: (
-      <span className="flex flex-col leading-none">
-        <span
-          className="font-sans text-[22px] font-bold tracking-[0.01em]"
-          style={{ color: "#0F62FE" }}
-        >
-          IBM
-        </span>
-        <span className="mt-1.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#5A6784]">
-          AI / Data / Software Engineering
-        </span>
-      </span>
-    ),
-
+    accent: "31,112,193",
+    logo: "/logos/logo-ibm.svg",
+    logoClass: "h-8 w-auto",
     items: [
       "Supercharge Your Data Analytics with Generative AI",
       "Introduction to Software Engineering",
@@ -705,16 +700,9 @@ const CREDENCIAIS: IssuerMark[] = [
     key: "databricks",
     issuer: "Databricks",
     accent: "255,54,33",
-    wordmark: (
-      <span className="flex flex-col leading-none">
-        <span className="font-sans text-[20px] font-bold tracking-tight" style={{ color: "#FF3621" }}>
-          databricks
-        </span>
-        <span className="mt-1.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#5A6784]">
-          Generative AI Fundamentals
-        </span>
-      </span>
-    ),
+    logo: "/logos/logo-databricks.svg",
+    logoClass: "h-7 w-7",
+    logoLabel: "Databricks",
     items: ["Academy Accreditation – Generative AI Fundamentals"],
     verify: "formação verificada",
   },
@@ -722,16 +710,8 @@ const CREDENCIAIS: IssuerMark[] = [
     key: "voitto",
     issuer: "Voitto — Lean Seis Sigma",
     accent: "245,166,35",
-    wordmark: (
-      <span className="flex flex-col leading-none">
-        <span className="font-sans text-[20px] font-bold tracking-tight" style={{ color: "#F5A623" }}>
-          Voitto
-        </span>
-        <span className="mt-1.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#5A6784]">
-          Lean Seis Sigma
-        </span>
-      </span>
-    ),
+    logo: "/logos/logo-voitto.svg",
+    logoClass: "h-7 w-auto",
     items: [
       "Yellow Belt em Lean Seis Sigma",
       "White Belt em Lean Seis Sigma",
@@ -761,8 +741,19 @@ function CredentialCard({ c }: { c: IssuerMark }) {
       />
       {/* issuer header */}
       <div className="flex items-center justify-between gap-3">
-        <div className="flex min-h-[3.25rem] items-center rounded-xl bg-white px-3.5 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_10px_24px_-12px_rgba(0,0,0,0.5)]">
-          {c.wordmark}
+        <div className="flex h-[3.5rem] min-w-[9.5rem] items-center gap-3 rounded-xl border border-black/5 bg-[#F7F8FA] px-4 shadow-[0_1px_0_rgba(255,255,255,0.7)_inset,0_12px_28px_-16px_rgba(0,0,0,0.55)]">
+          <img
+            src={c.logo}
+            alt={`Logo ${c.issuer.split(" — ")[0]}`}
+            className={`${c.logoClass} object-contain`}
+            loading="lazy"
+            decoding="async"
+          />
+          {c.logoLabel ? (
+            <span className="font-sans text-[15px] font-semibold tracking-tight text-[#1B2A4E]">
+              {c.logoLabel}
+            </span>
+          ) : null}
         </div>
         <span className="rounded-full border border-border/70 px-2.5 py-1 text-[9px] uppercase tracking-[0.2em] text-muted-foreground/70">
           emissor

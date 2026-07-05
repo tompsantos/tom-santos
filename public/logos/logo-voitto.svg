@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 96" role="img" aria-label="Voitto">
+  <g fill="none" stroke="#F5A623" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 26 L34 70 L54 26" />
+  </g>
+  <text x="70" y="66" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" letter-spacing="-1" fill="#1B2A4E">Voitto</text>
+</svg>
