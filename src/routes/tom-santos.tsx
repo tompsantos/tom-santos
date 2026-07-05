@@ -662,29 +662,95 @@ function Credenciais() {
             <h2 className="mt-4 font-display text-4xl md:text-5xl">
               formação permanente, prática aplicada.
             </h2>
+const CREDENCIAIS = [
+  {
+    issuer: "Google Cloud",
+    logo: logoGoogleCloud,
+    items: [
+      "Introduction to Generative AI",
+      "Machine Learning Operations (MLOps) to Generative AI",
+    ],
+  },
+  {
+    issuer: "IBM",
+    logo: logoIBM,
+    items: [
+      "Supercharge Your Data Analytics with Generative AI",
+      "Introduction to Software Engineering",
+    ],
+  },
+  {
+    issuer: "Databricks",
+    logo: logoDatabricks,
+    items: ["Academy Accreditation – Generative AI Fundamentals"],
+  },
+  {
+    issuer: "Voitto — Lean Seis Sigma",
+    logo: logoVoitto,
+    items: [
+      "Yellow Belt em Lean Seis Sigma",
+      "White Belt em Lean Seis Sigma",
+    ],
+  },
+];
+
+function Credenciais() {
+  return (
+    <section id="credenciais" className="relative py-24">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.6fr]">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.28em] text-primary">credenciais</p>
+            <h2 className="mt-4 font-display text-4xl md:text-5xl">
+              formação permanente, prática aplicada.
+            </h2>
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              a atuação de Tom combina prática aplicada, estudo contínuo, construção de protótipos e
-              desenvolvimento de propostas institucionais. suas qualificações e badges reforçam uma
+              a atuação de Tom combina prática aplicada, estudo contínuo, construção de protótipos
+              e desenvolvimento de propostas institucionais. suas credenciais reforçam uma
               trajetória em formação permanente nas áreas de inteligência artificial, dados,
               automação, processos, gestão e tecnologia aplicada.
             </p>
             <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-muted-foreground/70">
-              credenciais em atualização contínua
+              credenciais verificáveis via LinkedIn
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-            {BADGES.map((b) => (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {CREDENCIAIS.map((c) => (
               <div
-                key={b.title}
-                className="group relative overflow-hidden rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40"
+                key={c.issuer}
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-0.5 hover:border-primary/40"
               >
-                <div
-                  className="mb-4 h-10 w-10 rounded-full border border-border"
-                  style={{ background: "var(--gradient-silver)" }}
-                  aria-hidden
-                />
-                <p className="font-medium">{b.title}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{b.subtitle}</p>
+                <div className="flex h-14 items-center">
+                  <img
+                    src={c.logo}
+                    alt={`Logo ${c.issuer}`}
+                    className="max-h-11 w-auto max-w-[170px] object-contain"
+                    loading="lazy"
+                    onError={(e) => {
+                      const el = e.currentTarget;
+                      el.style.display = "none";
+                      const fb = el.nextElementSibling as HTMLElement | null;
+                      if (fb) fb.style.display = "block";
+                    }}
+                  />
+                  <span
+                    className="hidden font-display text-xl text-[#1B2A4E]"
+                    aria-hidden
+                  >
+                    {c.issuer}
+                  </span>
+                </div>
+                <div className="my-5 h-px w-full bg-neutral-200" />
+                <ul className="space-y-2">
+                  {c.items.map((it) => (
+                    <li
+                      key={it}
+                      className="text-[13px] leading-snug text-neutral-700"
+                    >
+                      {it}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
@@ -693,6 +759,7 @@ function Credenciais() {
     </section>
   );
 }
+
 
 const DOCS = [
   {
