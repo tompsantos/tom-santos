@@ -642,7 +642,7 @@ function Projetos() {
 type IssuerMark = {
   key: string;
   issuer: string;
-  wordmark: React.ReactNode;
+  wordmark: ReactNode;
   accent: string; // hex/rgb for subtle border glow
   items: string[];
   verify: string;
