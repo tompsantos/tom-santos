@@ -823,12 +823,13 @@ function Documentos() {
 
 function Contato() {
   const links = [
-    { icon: Mail, label: "enviar e-mail", href: "mailto:contato@orbeone.com.br" },
-    { icon: MessageCircle, label: "chamar no whatsapp", href: "https://wa.me/" },
-    { icon: Linkedin, label: "ver LinkedIn", href: "https://linkedin.com/" },
-    { icon: Github, label: "ver GitHub", href: "https://github.com/" },
-    { icon: ExternalLink, label: "conhecer orbeOne", href: "https://orbeone.com.br" },
+    { icon: Mail, label: "enviar e-mail", href: `mailto:${CONTACT_EMAIL}` },
+    { icon: MessageCircle, label: "chamar no whatsapp", href: WHATSAPP_URL },
+    { icon: Linkedin, label: "ver LinkedIn", href: LINKEDIN_URL },
+    { icon: Github, label: "ver GitHub", href: GITHUB_URL },
+    { icon: ExternalLink, label: "conhecer orbeOne", href: ORBEONE_URL },
   ];
+
   return (
     <section id="contato" className="relative overflow-hidden py-28" style={{ background: "var(--gradient-hero)" }}>
       <OrbitalRings className="left-1/2 top-1/2 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 opacity-40" />
