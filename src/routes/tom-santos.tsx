@@ -643,37 +643,174 @@ function Projetos() {
   );
 }
 
-const CREDENCIAIS = [
+type IssuerMark = {
+  key: string;
+  issuer: string;
+  wordmark: React.ReactNode;
+  accent: string; // hex/rgb for subtle border glow
+  items: string[];
+  verify: string;
+};
+
+const CREDENCIAIS: IssuerMark[] = [
   {
+    key: "gcp",
     issuer: "Google Cloud",
-    logo: logoGoogleCloud,
+    accent: "66,133,244",
+    wordmark: (
+      <span className="font-sans text-[19px] font-medium tracking-tight leading-none">
+        <span style={{ color: "#4285F4" }}>G</span>
+        <span style={{ color: "#EA4335" }}>o</span>
+        <span style={{ color: "#FBBC04" }}>o</span>
+        <span style={{ color: "#4285F4" }}>g</span>
+        <span style={{ color: "#34A853" }}>l</span>
+        <span style={{ color: "#EA4335" }}>e</span>
+        <span className="ml-1.5 font-normal text-[#3C4043]">Cloud</span>
+      </span>
+    ),
     items: [
       "Introduction to Generative AI",
       "Machine Learning Operations (MLOps) to Generative AI",
     ],
+    verify: "credencial via LinkedIn",
   },
   {
+    key: "ibm",
     issuer: "IBM",
-    logo: logoIBM,
+    accent: "15,98,254",
+    wordmark: (
+      <span
+        className="font-sans text-[22px] font-bold italic tracking-tight leading-none"
+        style={{ color: "#0F62FE", letterSpacing: "-0.02em" }}
+      >
+        IBM
+      </span>
+    ),
     items: [
       "Supercharge Your Data Analytics with Generative AI",
       "Introduction to Software Engineering",
     ],
+    verify: "credencial via LinkedIn",
   },
   {
+    key: "databricks",
     issuer: "Databricks",
-    logo: logoDatabricks,
+    accent: "255,54,33",
+    wordmark: (
+      <span className="inline-flex items-center gap-2 leading-none">
+        <svg width="20" height="22" viewBox="0 0 20 22" aria-hidden>
+          <path d="M2 6 L10 2 L18 6 L10 10 Z" fill="#FF3621" />
+          <path d="M2 11 L10 7 L18 11 L10 15 Z" fill="#FF3621" opacity="0.65" />
+          <path d="M2 16 L10 12 L18 16 L10 20 Z" fill="#FF3621" opacity="0.35" />
+        </svg>
+        <span className="font-sans text-[18px] font-semibold tracking-tight text-[#1B3139]">
+          databricks
+        </span>
+      </span>
+    ),
     items: ["Academy Accreditation – Generative AI Fundamentals"],
+    verify: "formação verificada",
   },
   {
+    key: "voitto",
     issuer: "Voitto — Lean Seis Sigma",
-    logo: logoVoitto,
+    accent: "245,166,35",
+    wordmark: (
+      <span className="inline-flex items-center gap-2.5 leading-none">
+        <span
+          className="grid h-6 w-6 place-items-center rounded-full text-[12px] font-bold"
+          style={{ border: "2px solid #F5A623", color: "#F5A623" }}
+        >
+          V
+        </span>
+        <span className="flex flex-col">
+          <span className="font-sans text-[17px] font-bold tracking-tight text-[#1B2A4E]">
+            Voitto
+          </span>
+          <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[#5A6784]">
+            Lean Seis Sigma
+          </span>
+        </span>
+      </span>
+    ),
     items: [
       "Yellow Belt em Lean Seis Sigma",
       "White Belt em Lean Seis Sigma",
     ],
+    verify: "formação verificada",
   },
 ];
+
+function CredentialCard({ c }: { c: IssuerMark }) {
+  return (
+    <div
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card/60 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 md:p-6"
+      style={{
+        backgroundImage:
+          "linear-gradient(180deg, oklch(1 0 0 / 0.03), oklch(1 0 0 / 0.005))",
+        boxShadow:
+          `inset 0 1px 0 oklch(1 0 0 / 0.06), 0 20px 50px -30px rgba(${c.accent},0.25)`,
+      }}
+    >
+      {/* accent hairline */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-70"
+        style={{
+          background: `linear-gradient(90deg, transparent, rgba(${c.accent},0.55), transparent)`,
+        }}
+      />
+      {/* issuer header */}
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex h-11 items-center rounded-lg bg-white/95 px-3 shadow-[0_1px_0_rgba(255,255,255,0.5)_inset,0_6px_16px_-8px_rgba(0,0,0,0.4)]">
+          {c.wordmark}
+        </div>
+        <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground/80">
+          emissor
+        </span>
+      </div>
+
+      <div className="mt-5 flex items-center gap-3">
+        <div className="h-px flex-1 bg-border" />
+        <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70">
+          credenciais
+        </span>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+
+      <ul className="mt-4 space-y-2">
+        {c.items.map((it) => (
+          <li
+            key={it}
+            className="flex items-start gap-2.5 rounded-lg border border-border/70 bg-secondary/30 px-3 py-2.5 text-[13px] leading-snug text-foreground/90"
+          >
+            <ShieldCheck
+              className="mt-0.5 h-3.5 w-3.5 shrink-0"
+              style={{ color: `rgb(${c.accent})` }}
+            />
+            <span>{it}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-5 flex items-center justify-between border-t border-border/60 pt-3">
+        <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+          {c.verify}
+        </span>
+        <span
+          className="inline-flex h-5 items-center rounded-full px-2 text-[9px] font-medium uppercase tracking-[0.18em]"
+          style={{
+            color: `rgb(${c.accent})`,
+            background: `rgba(${c.accent},0.10)`,
+            border: `1px solid rgba(${c.accent},0.25)`,
+          }}
+        >
+          {c.issuer.split(" — ")[0]}
+        </span>
+      </div>
+    </div>
+  );
+}
 
 function Credenciais() {
   return (
@@ -697,42 +834,7 @@ function Credenciais() {
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {CREDENCIAIS.map((c) => (
-              <div
-                key={c.issuer}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-0.5 hover:border-primary/40"
-              >
-                <div className="flex h-14 items-center">
-                  <img
-                    src={c.logo}
-                    alt={`Logo ${c.issuer}`}
-                    className="max-h-11 w-auto max-w-[170px] object-contain"
-                    loading="lazy"
-                    onError={(e) => {
-                      const el = e.currentTarget;
-                      el.style.display = "none";
-                      const fb = el.nextElementSibling as HTMLElement | null;
-                      if (fb) fb.style.display = "block";
-                    }}
-                  />
-                  <span
-                    className="hidden font-display text-xl text-[#1B2A4E]"
-                    aria-hidden
-                  >
-                    {c.issuer}
-                  </span>
-                </div>
-                <div className="my-5 h-px w-full bg-neutral-200" />
-                <ul className="space-y-2">
-                  {c.items.map((it) => (
-                    <li
-                      key={it}
-                      className="text-[13px] leading-snug text-neutral-700"
-                    >
-                      {it}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <CredentialCard key={c.key} c={c} />
             ))}
           </div>
         </div>
