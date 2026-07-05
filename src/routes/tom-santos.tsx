@@ -36,6 +36,17 @@ import {
   Landmark,
 } from "lucide-react";
 
+const CONTACT_EMAIL = "contato@orbeone.com.br";
+const WHATSAPP_URL = "https://wa.me/5513960004079";
+const GITHUB_URL = "https://github.com/tompsantos";
+const LINKEDIN_URL = "#linkedin";
+const ORBEONE_URL = "https://orbeone.com.br";
+
+import logoGoogleCloud from "@/assets/credentials/logo-google-cloud.svg";
+import logoIBM from "@/assets/credentials/logo-ibm.svg";
+import logoDatabricks from "@/assets/credentials/logo-databricks.svg";
+import logoVoitto from "@/assets/credentials/logo-voitto.svg";
+
 export const Route = createFileRoute("/tom-santos")({
   head: () => ({
     meta: [
@@ -43,7 +54,7 @@ export const Route = createFileRoute("/tom-santos")({
       {
         name: "description",
         content:
-          "Página institucional de Tom Laercio Pereira dos Santos, arquiteto de IA aplicada a governo, educação e negócios.",
+          "Página institucional de Tom Santos, arquiteto de IA aplicada a governo, educação e negócios.",
       },
       { property: "og:title", content: "Tom Santos | IA aplicada, governo, educação e tecnologia cidadã" },
       {
@@ -57,6 +68,7 @@ export const Route = createFileRoute("/tom-santos")({
   }),
   component: TomSantosPage,
 });
+
 
 const NAV = [
   { id: "sobre", label: "sobre" },
