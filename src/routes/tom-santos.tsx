@@ -211,13 +211,14 @@ function Hero() {
               />
               <img
                 src={tomPhoto.url}
-                alt="Retrato institucional de Tom Laercio Pereira dos Santos"
+                alt="Retrato institucional de Tom Santos"
                 className="relative z-10 h-[560px] w-full object-cover"
                 loading="eager"
               />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 z-30 flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                <span>Tom Laercio Pereira dos Santos</span>
+                <span>Tom Santos</span>
+
                 <span className="text-primary">orbeOne</span>
               </div>
             </div>
