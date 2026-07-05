@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-const tomPhoto = { url: "/tom-santos.png" };
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -32,14 +31,18 @@ import {
   Radar,
   FileSignature,
   Sparkles,
-  Download,
   Landmark,
 } from "lucide-react";
 
+const SITE_URL = "https://tom.orbeone.com.br";
+const tomPhoto = {
+  url: "/tom-santos.png",
+  absoluteUrl: `${SITE_URL}/tom-santos.png`,
+};
 const CONTACT_EMAIL = "contato@orbeone.com.br";
 const WHATSAPP_URL = "https://wa.me/5513960004079";
 const GITHUB_URL = "https://github.com/tompsantos";
-const LINKEDIN_URL = "#linkedin";
+const LINKEDIN_URL = "https://www.linkedin.com/in/tompsantos";
 const ORBEONE_URL = "https://orbeone.com.br";
 
 
@@ -59,8 +62,8 @@ export const Route = createFileRoute("/tom-santos")({
         content:
           "Inteligência artificial aplicada com responsabilidade pública, automação, agentes, gestão pública, negócios e educação.",
       },
-      { property: "og:image", content: tomPhoto.url },
-      { name: "twitter:image", content: tomPhoto.url },
+      { property: "og:image", content: tomPhoto.absoluteUrl },
+      { name: "twitter:image", content: tomPhoto.absoluteUrl },
     ],
   }),
   component: TomSantosPage,
@@ -839,7 +842,7 @@ const DOCS = [
     id: "d1",
     title: "proposta programática sobre IA na educação básica",
     desc: "documento assinado digitalmente com certificado ICP-Brasil e validado pelo ITI/Gov.br.",
-    cta: { label: "baixar proposta", icon: Download, href: "#" },
+    cta: { label: "solicitar proposta", icon: MessageCircle, href: "#contato" },
   },
   {
     id: "d2",
@@ -891,7 +894,7 @@ function Documentos() {
                   <span className="text-pretty text-foreground">{d.title}</span>
                 </span>
               </AccordionTrigger>
-              <AccordionContent className="pb-6 pl-[60px] text-[15px] leading-relaxed text-muted-foreground">
+              <AccordionContent className="pb-6 pl-0 text-[15px] leading-relaxed text-muted-foreground sm:pl-[60px]">
                 <p className="text-pretty">{d.desc}</p>
                 <Button
                   asChild
