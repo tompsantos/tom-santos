@@ -140,7 +140,8 @@
   position: relative;
   overflow: hidden;
 }
-@utility orbital-bg::before {
+
+.orbital-bg::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -149,6 +150,7 @@
     radial-gradient(ellipse at 85% 70%, oklch(0.6 0.08 235 / 0.10), transparent 55%);
   pointer-events: none;
 }
+
 
 @keyframes orbit-spin {
   from { transform: rotate(0deg); }
