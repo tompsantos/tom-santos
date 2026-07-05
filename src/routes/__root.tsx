@@ -81,9 +81,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Página institucional de Tom Laercio Pereira dos Santos, arquiteto de IA aplicada a governo, educação e negócios, com atuação em automação, agentes, tecnologia cidadã e transformação institucional.",
+          "Página institucional de Tom Santos, arquiteto de IA aplicada a governo, educação e negócios, com atuação em automação, agentes, tecnologia cidadã e transformação institucional.",
       },
-      { name: "author", content: "Tom Laercio Pereira dos Santos" },
+
+      { name: "author", content: "Tom Santos" },
       { property: "og:title", content: "Tom Santos | IA aplicada, governo, educação e tecnologia cidadã" },
       {
         property: "og:description",

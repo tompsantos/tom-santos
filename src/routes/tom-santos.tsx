@@ -35,6 +35,18 @@ import {
   Download,
   Landmark,
 } from "lucide-react";
+import logoGoogleCloud from "@/assets/credentials/logo-google-cloud.svg";
+import logoIBM from "@/assets/credentials/logo-ibm.svg";
+import logoDatabricks from "@/assets/credentials/logo-databricks.svg";
+import logoVoitto from "@/assets/credentials/logo-voitto.svg";
+
+const CONTACT_EMAIL = "contato@orbeone.com.br";
+const WHATSAPP_URL = "https://wa.me/5513960004079";
+const GITHUB_URL = "https://github.com/tompsantos";
+const LINKEDIN_URL = "#linkedin";
+const ORBEONE_URL = "https://orbeone.com.br";
+
+
 
 export const Route = createFileRoute("/tom-santos")({
   head: () => ({
@@ -43,7 +55,7 @@ export const Route = createFileRoute("/tom-santos")({
       {
         name: "description",
         content:
-          "Página institucional de Tom Laercio Pereira dos Santos, arquiteto de IA aplicada a governo, educação e negócios.",
+          "Página institucional de Tom Santos, arquiteto de IA aplicada a governo, educação e negócios.",
       },
       { property: "og:title", content: "Tom Santos | IA aplicada, governo, educação e tecnologia cidadã" },
       {
@@ -57,6 +69,7 @@ export const Route = createFileRoute("/tom-santos")({
   }),
   component: TomSantosPage,
 });
+
 
 const NAV = [
   { id: "sobre", label: "sobre" },
@@ -198,13 +211,14 @@ function Hero() {
               />
               <img
                 src={tomPhoto.url}
-                alt="Retrato institucional de Tom Laercio Pereira dos Santos"
+                alt="Retrato institucional de Tom Santos"
                 className="relative z-10 h-[560px] w-full object-cover"
                 loading="eager"
               />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 z-30 flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                <span>Tom Laercio Pereira dos Santos</span>
+                <span>Tom Santos</span>
+
                 <span className="text-primary">orbeOne</span>
               </div>
             </div>
@@ -279,10 +293,10 @@ function About() {
           <OrbitalRings className="-right-40 -top-20 h-[500px] w-[500px] opacity-30" />
           <div className="relative space-y-5 text-[15px] leading-relaxed text-foreground/90">
             <p>
-              <span className="font-medium">Tom Laercio Pereira dos Santos</span> é arquiteto de IA
-              aplicada, com atuação em automação, desenvolvimento de soluções digitais, análise de
-              processos e formulação de estratégias para uso responsável da inteligência artificial
-              em contextos governamentais, corporativos e educacionais.
+              <span className="font-medium">Tom Santos</span> é arquiteto de IA aplicada, com
+              atuação em automação, desenvolvimento de soluções digitais, análise de processos e
+              formulação de estratégias para uso responsável da inteligência artificial em
+              contextos governamentais, corporativos e educacionais.
             </p>
             <p className="text-muted-foreground">
               tem experiência anterior na administração pública municipal e desenvolve projetos
@@ -300,16 +314,17 @@ function About() {
             <DialogContent className="max-w-2xl border-border bg-card">
               <DialogHeader>
                 <DialogTitle className="font-display text-2xl">
-                  Tom Laercio Pereira dos Santos
+                  Tom Santos
                 </DialogTitle>
               </DialogHeader>
               <div className="space-y-4 text-sm leading-relaxed text-foreground/90">
                 <p>
-                  Tom Laercio Pereira dos Santos é arquiteto de IA aplicada, com atuação em
-                  automação, desenvolvimento de soluções digitais, análise de processos e
-                  formulação de estratégias para uso responsável da inteligência artificial em
-                  contextos governamentais, corporativos e educacionais.
+                  Tom Santos é arquiteto de IA aplicada, com atuação em automação,
+                  desenvolvimento de soluções digitais, análise de processos e formulação de
+                  estratégias para uso responsável da inteligência artificial em contextos
+                  governamentais, corporativos e educacionais.
                 </p>
+
                 <p>
                   tem experiência anterior na administração pública municipal e desenvolve projetos
                   voltados à aplicação de IA em gestão pública, documentação, risco, atendimento,
@@ -628,13 +643,36 @@ function Projetos() {
   );
 }
 
-const BADGES = [
-  { title: "Google", subtitle: "inteligência artificial e analytics" },
-  { title: "IBM", subtitle: "inteligência artificial" },
-  { title: "Databricks", subtitle: "engenharia de dados" },
-  { title: "Lean Six Sigma", subtitle: "white belt · yellow belt" },
-  { title: "IA & automação", subtitle: "formações e badges técnicos" },
-  { title: "dados & processos", subtitle: "transformação digital" },
+const CREDENCIAIS = [
+  {
+    issuer: "Google Cloud",
+    logo: logoGoogleCloud,
+    items: [
+      "Introduction to Generative AI",
+      "Machine Learning Operations (MLOps) to Generative AI",
+    ],
+  },
+  {
+    issuer: "IBM",
+    logo: logoIBM,
+    items: [
+      "Supercharge Your Data Analytics with Generative AI",
+      "Introduction to Software Engineering",
+    ],
+  },
+  {
+    issuer: "Databricks",
+    logo: logoDatabricks,
+    items: ["Academy Accreditation – Generative AI Fundamentals"],
+  },
+  {
+    issuer: "Voitto — Lean Seis Sigma",
+    logo: logoVoitto,
+    items: [
+      "Yellow Belt em Lean Seis Sigma",
+      "White Belt em Lean Seis Sigma",
+    ],
+  },
 ];
 
 function Credenciais() {
@@ -648,28 +686,52 @@ function Credenciais() {
               formação permanente, prática aplicada.
             </h2>
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              a atuação de Tom combina prática aplicada, estudo contínuo, construção de protótipos e
-              desenvolvimento de propostas institucionais. suas qualificações e badges reforçam uma
+              a atuação de Tom combina prática aplicada, estudo contínuo, construção de protótipos
+              e desenvolvimento de propostas institucionais. suas credenciais reforçam uma
               trajetória em formação permanente nas áreas de inteligência artificial, dados,
               automação, processos, gestão e tecnologia aplicada.
             </p>
             <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-muted-foreground/70">
-              credenciais em atualização contínua
+              credenciais verificáveis via LinkedIn
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-            {BADGES.map((b) => (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {CREDENCIAIS.map((c) => (
               <div
-                key={b.title}
-                className="group relative overflow-hidden rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40"
+                key={c.issuer}
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.5)] transition-all hover:-translate-y-0.5 hover:border-primary/40"
               >
-                <div
-                  className="mb-4 h-10 w-10 rounded-full border border-border"
-                  style={{ background: "var(--gradient-silver)" }}
-                  aria-hidden
-                />
-                <p className="font-medium">{b.title}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{b.subtitle}</p>
+                <div className="flex h-14 items-center">
+                  <img
+                    src={c.logo}
+                    alt={`Logo ${c.issuer}`}
+                    className="max-h-11 w-auto max-w-[170px] object-contain"
+                    loading="lazy"
+                    onError={(e) => {
+                      const el = e.currentTarget;
+                      el.style.display = "none";
+                      const fb = el.nextElementSibling as HTMLElement | null;
+                      if (fb) fb.style.display = "block";
+                    }}
+                  />
+                  <span
+                    className="hidden font-display text-xl text-[#1B2A4E]"
+                    aria-hidden
+                  >
+                    {c.issuer}
+                  </span>
+                </div>
+                <div className="my-5 h-px w-full bg-neutral-200" />
+                <ul className="space-y-2">
+                  {c.items.map((it) => (
+                    <li
+                      key={it}
+                      className="text-[13px] leading-snug text-neutral-700"
+                    >
+                      {it}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
@@ -678,6 +740,7 @@ function Credenciais() {
     </section>
   );
 }
+
 
 const DOCS = [
   {
@@ -760,12 +823,13 @@ function Documentos() {
 
 function Contato() {
   const links = [
-    { icon: Mail, label: "enviar e-mail", href: "mailto:contato@orbeone.com.br" },
-    { icon: MessageCircle, label: "chamar no whatsapp", href: "https://wa.me/" },
-    { icon: Linkedin, label: "ver LinkedIn", href: "https://linkedin.com/" },
-    { icon: Github, label: "ver GitHub", href: "https://github.com/" },
-    { icon: ExternalLink, label: "conhecer orbeOne", href: "https://orbeone.com.br" },
+    { icon: Mail, label: "enviar e-mail", href: `mailto:${CONTACT_EMAIL}` },
+    { icon: MessageCircle, label: "chamar no whatsapp", href: WHATSAPP_URL },
+    { icon: Linkedin, label: "ver LinkedIn", href: LINKEDIN_URL },
+    { icon: Github, label: "ver GitHub", href: GITHUB_URL },
+    { icon: ExternalLink, label: "conhecer orbeOne", href: ORBEONE_URL },
   ];
+
   return (
     <section id="contato" className="relative overflow-hidden py-28" style={{ background: "var(--gradient-hero)" }}>
       <OrbitalRings className="left-1/2 top-1/2 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 opacity-40" />
@@ -804,7 +868,7 @@ function Footer() {
     <footer className="border-t border-border bg-surface py-14">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 md:grid-cols-[1.4fr_1fr]">
         <div>
-          <p className="font-display text-2xl">Tom Laercio Pereira dos Santos</p>
+          <p className="font-display text-2xl">Tom Santos</p>
           <p className="mt-2 text-sm text-muted-foreground">
             arquiteto de IA aplicada a governo, educação e negócios
           </p>
@@ -813,17 +877,18 @@ function Footer() {
           </p>
         </div>
         <div className="flex flex-wrap items-start gap-x-6 gap-y-2 text-sm md:justify-end">
-          <a href="https://orbeone.com.br" className="text-muted-foreground hover:text-foreground">orbeOne</a>
+          <a href={ORBEONE_URL} className="text-muted-foreground hover:text-foreground">orbeOne</a>
           <a href="#educacao" className="text-muted-foreground hover:text-foreground">proposta IA na educação</a>
-          <a href="https://linkedin.com/" className="text-muted-foreground hover:text-foreground">LinkedIn</a>
-          <a href="https://github.com/" className="text-muted-foreground hover:text-foreground">GitHub</a>
+          <a href={LINKEDIN_URL} className="text-muted-foreground hover:text-foreground">LinkedIn</a>
+          <a href={GITHUB_URL} className="text-muted-foreground hover:text-foreground">GitHub</a>
           <a href="#contato" className="text-muted-foreground hover:text-foreground">contato</a>
         </div>
       </div>
       <div className="mx-auto mt-10 max-w-7xl border-t border-border px-6 pt-6">
         <p className="text-xs text-muted-foreground">
-          © 2026 Tom Laercio Pereira dos Santos. todos os direitos reservados.
+          © 2026 Tom Santos. todos os direitos reservados.
         </p>
+
       </div>
     </footer>
   );
