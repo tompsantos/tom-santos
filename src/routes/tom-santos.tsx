@@ -293,10 +293,10 @@ function About() {
           <OrbitalRings className="-right-40 -top-20 h-[500px] w-[500px] opacity-30" />
           <div className="relative space-y-5 text-[15px] leading-relaxed text-foreground/90">
             <p>
-              <span className="font-medium">Tom Laercio Pereira dos Santos</span> é arquiteto de IA
-              aplicada, com atuação em automação, desenvolvimento de soluções digitais, análise de
-              processos e formulação de estratégias para uso responsável da inteligência artificial
-              em contextos governamentais, corporativos e educacionais.
+              <span className="font-medium">Tom Santos</span> é arquiteto de IA aplicada, com
+              atuação em automação, desenvolvimento de soluções digitais, análise de processos e
+              formulação de estratégias para uso responsável da inteligência artificial em
+              contextos governamentais, corporativos e educacionais.
             </p>
             <p className="text-muted-foreground">
               tem experiência anterior na administração pública municipal e desenvolve projetos
@@ -314,16 +314,17 @@ function About() {
             <DialogContent className="max-w-2xl border-border bg-card">
               <DialogHeader>
                 <DialogTitle className="font-display text-2xl">
-                  Tom Laercio Pereira dos Santos
+                  Tom Santos
                 </DialogTitle>
               </DialogHeader>
               <div className="space-y-4 text-sm leading-relaxed text-foreground/90">
                 <p>
-                  Tom Laercio Pereira dos Santos é arquiteto de IA aplicada, com atuação em
-                  automação, desenvolvimento de soluções digitais, análise de processos e
-                  formulação de estratégias para uso responsável da inteligência artificial em
-                  contextos governamentais, corporativos e educacionais.
+                  Tom Santos é arquiteto de IA aplicada, com atuação em automação,
+                  desenvolvimento de soluções digitais, análise de processos e formulação de
+                  estratégias para uso responsável da inteligência artificial em contextos
+                  governamentais, corporativos e educacionais.
                 </p>
+
                 <p>
                   tem experiência anterior na administração pública municipal e desenvolve projetos
                   voltados à aplicação de IA em gestão pública, documentação, risco, atendimento,
