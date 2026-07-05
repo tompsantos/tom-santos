@@ -167,3 +167,13 @@
 
 .animate-fade-up { animation: fade-up 0.7s ease-out both; }
 .animate-orbit-slow { animation: orbit-spin 60s linear infinite; }
+
+@media (max-width: 767px) {
+  #top {
+    padding-top: 9.5rem;
+  }
+
+  #top > div:first-of-type > div:first-child {
+    margin-top: 0 !important;
+  }
+}
